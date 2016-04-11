@@ -1,0 +1,22 @@
+{
+    "server": {
+        "name": "Example Application",
+        "host": "example.intuit.com",
+        "port": 3000,
+        "allowOrigin": "*.intuit.com"
+    },
+
+    "restartOnUncaughtException": true,
+    "restartTimeout": 5000,
+    "envType": "preproduction",
+    "requestTimeout": 15000,
+    "proxyServer": null,
+    "services": {
+        "exampleService": {
+            "_comment_": "API for external example",
+            "enabled": true,
+            "url": "http://preprod.externalservice.com/api",
+            "apiKey" : "XXX you need to get this"
+        }
+    }
+}
