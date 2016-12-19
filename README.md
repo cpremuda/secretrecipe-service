@@ -4,7 +4,6 @@ NodeServer
 Benefit Assist Application server utilizes the Node.js technology. Here's how and what all is needed to run Node server locally.
 
 ## Getting Started
-
 * Confirm you have the necessary command line utilities
   * `which git && which node && which npm` - should output the location of each
   * if you don't have, go install them globally
