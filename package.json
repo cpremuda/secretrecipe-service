@@ -4,7 +4,7 @@
   "description": "Example framework for getting up and running with Restify",
   "main": "app.js",
   "scripts": {
-    "lint": "grunt js-hint", "//": "lint used to be prepublish, but had issues with npm install",
+    "prepublish": "grunt js-hint",
     "start": "node app.js",
     "test": "NODE_ENV=test grunt test:ci && NODE_ENV=test grunt coverage",
     "build-production": "grunt release"
