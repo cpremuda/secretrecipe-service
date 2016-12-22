@@ -4,10 +4,11 @@ NodeServer
 Benefit Assist Application server utilizes the Node.js technology. Here's how and what all is needed to run Node server locally.
 
 ## Getting Started
-
 * Confirm you have the necessary command line utilities
   * `which git && which node && which npm` - should output the location of each
   * if you don't have, go install them globally
+  * if you don't want to install dependencies used as cli (ex. grunt) globally, then install it normally using package.json and let PATH know to look for the bins in ./node_modules/.bin
+  * `export PATH="$PATH:node_modules/.bin" && echo $PATH` - should see node_modules/.bin appended to the fully expanded value of PATH
     * [Install git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git#Installing-on-Mac)
     * [Install node and npm](https://nodejs.org/download/)
 
