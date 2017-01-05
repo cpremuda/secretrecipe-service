@@ -12,7 +12,8 @@
 //require('./config/appDynamics');
 
 var Settings = require('./config/settings');
-var Server = require('./restify_server'),
+var Server = require('./express_server'), // if you want to use Parse DB
+//var Server = require('./restify_server'),
     Constants = require('./config/constants'),
     logger = require('./logging/logger').getLogger();
 

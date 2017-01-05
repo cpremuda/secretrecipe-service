@@ -1,9 +1,9 @@
 {
     "server": {
         "name": "Example Application",
-        "host": "example.intuit.com",
-        "port": 3000,
-        "allowOrigin": "*.intuit.com"
+        "host": "example.yourdomain.com",
+        "port": 3003,
+        "allowOrigin": "*.yourdomain.com"
     },
 
     "restartOnUncaughtException": true,
@@ -11,12 +11,20 @@
     "envType": "preproduction",
     "requestTimeout": 15000,
     "proxyServer": null,
+    "database": {
+        "parse": {
+            "serverURL": "/parse",
+            "databaseURI": "Your Mongo DB Connection URL here",
+            "appId": "Make up an app ID - put in secrets.json",
+            "masterKey": "Make up a master Key - put in secrets.json"
+        }
+    },
     "services": {
         "exampleService": {
             "_comment_": "API for external example",
             "enabled": true,
             "url": "http://preprod.externalservice.com/api",
-            "apiKey" : "XXX you need to get this"
+            "apiKey" : "you need to get this - put in secrets.json"
         }
     }
 }
