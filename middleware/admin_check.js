@@ -18,11 +18,9 @@ var authValidator = function (req, resp, next) {
         return next();
     }
 
-    // TODO - check against the referrer?
-
     // get the authorization header
     var apiKey = req.headers.authorization;
-    if (_.has(Settings.security.apiKeys.apiKeys, apiKey)) {
+    if (_.has(Settings.security.apiKeys, apiKey)) {
         Logger.info("Authorization allowed for user: " + Settings.security.apiKeys[apiKey] + ', for route: ' + req.url);
         next();
     }

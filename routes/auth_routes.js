@@ -1,5 +1,5 @@
 var _ = require('lodash');
-var AuthController = require('../controllers/auth_controller');
+var AuthController = require('../dao/DAO');
 var jSend = require('../util/jsend');
 
 var AuthRoutes = {

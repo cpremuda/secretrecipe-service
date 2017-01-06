@@ -1,9 +1,9 @@
-var Constants = require('../config/constants');
-var Logger = require('../logging/logger').getLogger();
-var kaiseki = require('../util/kaiseki');
-var Settings = require('../config/settings');
+var Constants = require('../../config/constants');
+var Logger = require('../../logging/logger').getLogger();
+var kaiseki = require('../../util/kaiseki');
+var Settings = require('../../config/settings');
 var vasync = require('vasync');
-var _ = require('underscore');
+var _ = require('lodash');
 
 var PARSE = new kaiseki(Settings.database.parse.appId, Settings.database.parse.masterKey);
 

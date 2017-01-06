@@ -1,13 +1,31 @@
-var kaiseki = require('../util/kaiseki');
-var Settings = require('../config/settings');
+var Constants = require('../../config/constants');
+var Logger = require('../../logging/logger').getLogger();
+var kaiseki = require('../../util/kaiseki');
+var Settings = require('../../config/settings');
+var vasync = require('vasync');
 var _ = require('lodash');
-var merge = require('../util/objectMerge');
-//var EmailService = require('../services/email_service');
-var Logger = require('../logging/logger').getLogger();
 
-var PARSE = new kaiseki(Settings.database.parse.appId);
+var PARSE = new kaiseki(Settings.database.parse.appId, Settings.database.parse.masterKey);
 
-module.exports = {
+var USERS = {
+
+    getUsers : function (callback) {
+        Logger.info("Getting users");
+        PARSE.getUsers({limit : 1000}, function (err, res, results, success) {
+            if (err) {
+                Logger.error("Could not get users: " + err.message);
+                return callback(err)
+            }
+            if (!success) {
+                Logger.error("Could not get users: " + JSON.stringify(results));
+                return callback(new Error(JSON.stringify(results)));
+            }
+            //var filteredResults = _.omit(results, ["createdAt", "updatedAt", "objectId", "owner"]);
+            //filteredResults.email = results.owner.email;
+            return callback(null, results);
+        })
+    },
+
     /**
      * Log the user in
      *
@@ -61,7 +79,7 @@ module.exports = {
                 return callback(new Error("Create User call failed"));
             }
             else {
-//                EmailService.sendNewAccount(username);
+                //                EmailService.sendNewAccount(username);
                 return callback(null, _.omit(body, ["createdAt", "updatedAt"]));
             }
 
@@ -98,3 +116,4 @@ module.exports = {
         });
     }
 };
+module.exports = USERS;
