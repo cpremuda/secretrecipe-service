@@ -83,5 +83,5 @@ module.exports = AuthRoutes;
 
 function _setSessionCookie (resp, info) {
     resp.cookie('sessionToken', info.sessionToken, { maxAge: 900000, httpOnly: true });
-    resp.cookie('userId', info.objectId), { maxAge: 900000, httpOnly: true };
+    resp.cookie('userId', info.objectId, { maxAge: 900000, httpOnly: true });
 }

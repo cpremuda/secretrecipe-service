@@ -19,7 +19,7 @@ if (fs.existsSync(path.resolve(__dirname, env + ".json"))) {
     envSpecificConfig = require('./' + env + ".json");
 }
 else {
-    envSpecificConfig = require('./development.json');
+    envSpecificConfig = {};
 }
 var settings = merge(defaultConfig, envSpecificConfig);
 
@@ -32,40 +32,6 @@ if (fs.existsSync(path.resolve(__dirname, 'secrets.json'))) {
     settings = merge(settings, secrets);
 }
 
-
-_setDataCenterSettings(settings, dc);
-_setENVSettings(settings);
-
 module.exports = settings;
 
-
-/**
- * Override config with data center specific options.
- * @param settings
- * @param dataCenter
- * @private
- */
-function _setDataCenterSettings (settings, dataCenter) {
-    var specificSettings = settings.dataCenterSpecific;
-
-    if (specificSettings && dataCenter && specificSettings[dataCenter]) {
-
-        _.each(specificSettings[dataCenter], function (value, key) {
-            settings[key] = value;
-        });
-    }
-
-    settings.dataCenterSpecific = undefined;
-}
-
-
-/**
- * Override config based setting with env specific ones if specified
- *
- * @param settings
- * @private
- */
-function _setENVSettings (settings) {
-
-}
 

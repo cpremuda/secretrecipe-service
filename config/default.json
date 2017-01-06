@@ -11,20 +11,20 @@
     "envType": "preproduction",
     "requestTimeout": 15000,
     "proxyServer": null,
+    "security": {
+        "_comment" : "These are in the secrets.json file"
+    },
     "database": {
         "parse": {
             "serverURL": "/parse",
-            "databaseURI": "Your Mongo DB Connection URL here",
-            "appId": "Make up an app ID - put in secrets.json",
-            "masterKey": "Make up a master Key - put in secrets.json"
+            "appId": "Make up an app ID"
         }
     },
     "services": {
         "exampleService": {
             "_comment_": "API for external example",
             "enabled": true,
-            "url": "http://preprod.externalservice.com/api",
-            "apiKey" : "you need to get this - put in secrets.json"
+            "url": "http://preprod.externalservice.com/api"
         }
     }
 }
