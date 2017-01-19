@@ -4,7 +4,7 @@
         "host": "example.yourdomain.com",
         "port": 3003,
         "allowOrigin": "*.yourdomain.com",
-        "authorizationEnabled" : true
+        "authorizationEnabled": true
     },
 
     "restartOnUncaughtException": true,
@@ -13,7 +13,7 @@
     "requestTimeout": 15000,
     "proxyServer": null,
     "security": {
-        "_comment" : "These are in the secrets.json file"
+        "_comment": "These are in the secrets.json file"
     },
     "database": {
         "parse": {
@@ -27,5 +27,8 @@
             "enabled": true,
             "url": "http://preprod.externalservice.com/api"
         }
+    },
+    "uiConfig": {
+
     }
 }
