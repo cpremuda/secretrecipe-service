@@ -1,0 +1,30 @@
+{
+    "server": {
+        "name": "Example Application",
+        "host": "example.yourdomain.com",
+        "port": 3003,
+        "allowOrigin": "*.yourdomain.com"
+    },
+
+    "restartOnUncaughtException": true,
+    "restartTimeout": 5000,
+    "envType": "preproduction",
+    "requestTimeout": 15000,
+    "proxyServer": null,
+    "database": {
+        "parse": {
+            "serverURL": "/parse",
+            "databaseURI": "Your Mongo DB Connection URL here",
+            "appId": "Make up an app ID",
+            "masterKey": "Make up a master Key"
+        }
+    },
+    "services": {
+        "exampleService": {
+            "_comment_": "API for external example",
+            "enabled": true,
+            "url": "http://preprod.externalservice.com/api",
+            "apiKey" : "XXX you need to get this"
+        }
+    }
+}

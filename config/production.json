@@ -1,0 +1,14 @@
+{
+    "restartOnUncaughtException": true,
+    "restartTimeout": 30000,
+    "envType": "production",
+    "proxyServer": null,
+    "services": {
+        "exampleService": {
+            "_comment_": "API for external example",
+            "enabled": true,
+            "url": "http://prod.externalservice.com/api",
+            "apiKey" : "XXX you need to get this"
+        }
+    }
+}
