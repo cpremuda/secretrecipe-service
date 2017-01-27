@@ -3,7 +3,7 @@ logs/
 .idea/
 target/
 tmp/
-config/application.json
+config/secrets.json
 npm-debug.log
 coverage
 npm-shrinkwrap.json
