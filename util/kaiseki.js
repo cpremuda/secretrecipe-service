@@ -19,7 +19,7 @@ var Kaiseki = function(applicationId, masterKey, sessionToken) {
 };
 
 Kaiseki.prototype = {
-  API_BASE_URL: 'http://localhost:' + settings.server.port + '/' + settings.database.parse.serverURL + '/',
+  API_BASE_URL: 'http://localhost:' + settings.server.port + settings.database.parse.serverURL + '/',
 
   applicationId: null,
   restAPIKey: null,
