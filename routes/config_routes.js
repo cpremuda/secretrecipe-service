@@ -1,4 +1,6 @@
 var Settings = require('../config/settings');
+var jSend = require('../util/jsend');
+var pkg = require('../package.json');
 
 module.exports = {
 

@@ -5,12 +5,16 @@ var DAO = {
     //=======================================
     //  DATA related APIs
     //=======================================
-    load : function (bookId, callback) {
-        return DB.load(bookId, callback);
+    load : function (dataId, callback) {
+        return DB.load(dataId, callback);
     },
 
-    save : function (bookId, data, callback) {
-        return DB.save(bookId, data, callback);
+    save : function (dataId, data, callback) {
+        return DB.save(dataId, data, callback);
+    },
+
+    create : function(data, callback) {
+        return DB.create(data, callback);
     },
 
     //=======================================
