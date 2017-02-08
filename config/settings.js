@@ -5,10 +5,6 @@ var _ = require('lodash');
 var path = require('path');
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-// check to see if the env is namespaced per datacenter
-var dc = env.split('.');
-env = dc[0];
-dc = dc[1];
 
 // Pull the default config file and the environment specific one
 // If env specific does not exist, use the depoloyment
