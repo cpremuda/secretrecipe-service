@@ -23,7 +23,8 @@
     "request": "~2.79.0",
     "restify": "~4.3.0",
     "express" : "~4.14.0",
-    "parse-server" : "~2.3.1"
+    "parse-server" : "~2.3.1",
+    "parse-dashboard" : "^1.0.23"
   },
   "devDependencies": {
     "chai": "~3.5.0",
