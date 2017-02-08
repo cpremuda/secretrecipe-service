@@ -7,20 +7,25 @@ var Settings = require('../config/settings');
 var ParseDashboard = require('parse-dashboard');
 var dashboard = new ParseDashboard({
     "apps": [
-        Settings.database.parse
-        //{
-        //    "serverURL": "http://localhost:1337/parse",
-        //    "appId": "myAppId",
-        //    "masterKey": "myMasterKey",
-        //    "appName": "MyApp"
-        //}
-    ]
-});
+        Settings.database.parse.server
+    ],
+    "users" : Settings.database.parse.users
+
+}, Settings.database.parse.dashboard.allowInsecureHttp);
 
 var AdminRoutes = {
 
     setup : function (server) {
 
+        /**
+         * Set up access to the DB dashboard
+         */
+        server.use('/admin/dashboard', dashboard);
+
+
+        /**
+         * Get a list of users
+         */
         server.get('/admin/users', adminCheck, function (req, resp, next) {
             dao.getUsers(function (error, results) {
                 if (error) {
@@ -33,16 +38,11 @@ var AdminRoutes = {
         });
 
         /**
-         * Return the current configuration file
+         * Return the current env specific configuration file
          */
         server.get('/admin/config', adminCheck, function (req, resp, next) {
             jSend.success(resp, {'env' : process.env.NODE_ENV, 'config' : Settings});
         });
-
-        /**
-         * Return the current configuration file
-         */
-        server.use('/admin/dashboard', dashboard);
 
     }
 };

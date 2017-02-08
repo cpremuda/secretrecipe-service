@@ -13,7 +13,7 @@ var express = require('express'),
     ParseServer = require('parse-server').ParseServer,
     logger = require('./logging/logger').getLogger(Constants.serverName);
 
-var parseAPI = new ParseServer(Settings.database.parse);
+var parseAPI = new ParseServer(Settings.database.parse.server);
 /**
  * Application server
  */
@@ -38,7 +38,7 @@ ExpressServer.prototype = {
         this.server = express();
 
         this.server
-            .use(Settings.database.parse.serverURL, parseAPI)
+            .use(Settings.database.parse.server.serverURL, parseAPI)
             .use(requestLogger)
             .use(cors)
             .use(require('compression')())  // Gzip response
