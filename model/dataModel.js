@@ -6,7 +6,6 @@ var uuid = require('../util/uuid');
 var Constants = require('../config/constants');
 var logger = require('../logging/logger').getLogger();
 var Class = require('../util/Class');
-var stringUtil = require('../util/stringutil');
 
 var DataModel = Class.extend({
 
@@ -25,7 +24,7 @@ var DataModel = Class.extend({
                 inData = JSON.parse(inData);
             }
             catch (ex) {
-                logger.error("Invalid JSON string passed to model constuctor: " + inData);
+                logger.error("Invalid JSON string passed to model constructor: " + inData);
                 inData = null;
             }
         }
@@ -56,7 +55,7 @@ var DataModel = Class.extend({
 
     get : function (key) {
         //return this._model[key];
-        return stringUtil.stringToFunction(_normalizeModelRef(key, true), this._model);
+        return _getPathValue(_normalizeModelRef(key, true), this._model);
 
     },
 
@@ -313,3 +312,21 @@ function _isArray (key) {
 function _removeQuotes (val) {
     return val.replace(/^["|'](.*?)["|']$/, "$1")
 }
+
+//------------------------------------------------------
+// Utility function to covert a string into an
+// existing class function
+// May return null if no function exists in the namespace
+//------------------------------------------------------
+function _getPathValue(path, context) {
+    var arr = path.split(".");
+
+    var val = (context);
+    for (var i = 0, len = arr.length; i < len; i++) {
+        val = val[arr[i]];
+        if (typeof val === 'undefined') {
+            return undefined;
+        }
+    }
+    return val;
+};

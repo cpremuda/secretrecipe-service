@@ -22,7 +22,6 @@
                 "appName" : "StarterKit"
             },
             "dashboard" : {
-                "_comment" : "fill this in this arraty in the secrets.json file: { user : xxx, pass : xxx }",
                 "users" : [],
                 "allowInsecureHttp" : true
             }

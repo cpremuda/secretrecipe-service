@@ -6,7 +6,7 @@ var projectDir = require('app-root-path').path;
 
 var Constants = {
     projectDir : projectDir,
-    applicationName : "Restify Example",
+    applicationName : "FullStack Server",
     logDir : path.resolve(projectDir, 'logs'),
     resourcesDir : path.resolve(projectDir, 'resources'),
     appId : "Example"

@@ -5,7 +5,7 @@ var Settings = require('../../config/settings');
 var vasync = require('vasync');
 var _ = require('lodash');
 
-var PARSE = new kaiseki(Settings.database.parse.appId, Settings.database.parse.masterKey);
+var PARSE = new kaiseki(Settings.database.parse.server.appId, Settings.database.parse.server.masterKey);
 
 var USERS = {
 
@@ -29,13 +29,15 @@ var USERS = {
     /**
      * Log the user in
      *
-     * @param username
-     * @param password
+     * @param authModel - instance of a DataModel with authSchema
      * @param callback
      *
      * @return { userinfo...., sessionToken : tttt }
      */
-    login : function (username, password, callback) {
+    login : function (authModel, callback) {
+        var username = authModel.get("username");
+        var password = authModel.get("password");
+
         username = username.toLowerCase();
         Logger.info ("Auth Login: " + username);
 
@@ -56,14 +58,14 @@ var USERS = {
     /**
      * Create a new user
      *
-     * @param username
-     * @param password
+     * @param authModel - instance of a DataModel with authSchema
      * @param callback
      *
      * @returns { sessionToken : tttt }
      */
-    createUser : function (username, password, callback) {
-        username = username.toLowerCase();
+    createUser : function (authModel, callback) {
+        var username = authModel.get("username");
+        var password = authModel.get("password");
 
         Logger.info ("Auth Create User: " + username);
         var credentials = {

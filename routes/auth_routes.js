@@ -1,5 +1,7 @@
 var _ = require('lodash');
 var AuthController = require('../dao/DAO');
+var Model = require('../model/dataModel.js');
+var authSchema = require('../model/schemas/authSchema.js');
 var jSend = require('../util/jsend');
 
 var AuthRoutes = {
@@ -7,10 +9,8 @@ var AuthRoutes = {
     setup : function (server) {
 
         server.post('/auth/login', function (req, resp, next) {
-            var data = _.isObject(req.body) ? req.body : JSON.parse(req.body);
-            var username = data.username;
-            var pw = data.password;
-            AuthController.login(username, pw, function (error, results) {
+            var authModel = new Model(req.body, authSchema);
+            AuthController.login(authModel, function (error, results) {
                 if (error) {
                     jSend.error(resp, error);
                 }
@@ -22,10 +22,8 @@ var AuthRoutes = {
         });
 
         server.post('/auth/register', function (req, resp, next) {
-            var data = _.isObject(req.body) ? req.body : JSON.parse(req.body);
-            var username = data.username;
-            var pw = data.password;
-            AuthController.createUser(username, pw, function (error, results) {
+            var authModel = new Model(req.body, authSchema);
+            AuthController.createUser(authModel, function (error, results) {
                 if (error) {
                     jSend.error(resp, error);
                 }
@@ -37,9 +35,8 @@ var AuthRoutes = {
         });
 
         server.post('/auth/forgotpw', function (req, resp, next) {
-            var data = _.isObject(req.body) ? req.body : JSON.parse(req.body);
-            var email = data.email;
-            AuthController.requestPasswordReset(email, function (error, results) {
+            var authModel = new Model(req.body, authSchema);
+            AuthController.requestPasswordReset(authModel, function (error, results) {
                 if (error) {
                     jSend.error(resp, error);
                 }
@@ -51,10 +48,10 @@ var AuthRoutes = {
 
 
         server.post('/auth/updatepw', function (req, resp, next) {
-            var data = _.isObject(req.body) ? req.body : JSON.parse(req.body);
+            var authModel = new Model(req.body, authSchema);
             var sessionToken = req.cookies.sessionToken;
             var userid = req.cookies.userId;
-            AuthController.updateUser(sessionToken, userid, {password : data.password}, function (error, results) {
+            AuthController.updateUser(sessionToken, userid, authModel, function (error, results) {
                 if (error) {
                     jSend.error(resp, error);
                 }

@@ -24,16 +24,16 @@ var DAO = {
         return USERS.getUsers(callback);
     },
 
-    login : function (username, password, callback) {
-        return USERS.login(username, password, callback);
+    login : function (authModel, callback) {
+        return USERS.login(authModel, callback);
     },
 
-    createUser : function (username, password, callback) {
-        return USERS.createUser(username, password, callback);
+    createUser : function (authModel, callback) {
+        return USERS.createUser(authModel, callback);
     },
 
-    requestPasswordReset : function (username, callback) {
-        return USERS.requestPasswordReset(username, callback);
+    requestPasswordReset : function (authModel, callback) {
+        return USERS.requestPasswordReset(authModel, callback);
     },
 
     isLoggedIn : function (sessionId, callback) {

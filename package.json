@@ -1,7 +1,7 @@
 {
   "name": "node_scaffolding",
   "version": "1.0.0",
-  "description": "Example framework for getting up and running with Restify",
+  "description": "Example framework for getting up and running with ParseDB (mongo)",
   "main": "app.js",
   "scripts": {
     "prepublish": "grunt js-hint",

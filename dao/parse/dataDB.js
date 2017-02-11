@@ -5,15 +5,19 @@ var Settings = require('../../config/settings');
 var vasync = require('vasync');
 var _ = require('lodash');
 
-var PARSE = new kaiseki(Settings.database.parse.appId, Settings.database.parse.masterKey);
+var PARSE = new kaiseki(Settings.database.parse.server.appId, Settings.database.parse.server.masterKey);
 
 var DB = {
 
-    load : function (data, callback) {
+    create : function (model, callback) {
 
     },
 
-    save : function (bookId, model, callback) {
+    load : function (dataId, callback) {
+
+    },
+
+    save : function (dataId, model, callback) {
 
     }
 };
