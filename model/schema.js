@@ -43,7 +43,7 @@ module.exports = function Schema (def) {
 
         defForKey : function (key) {
             if (this.hasKey(key)) {
-                return _def[key];  // could return a copy for better encapsulation
+                return _.cloneDeep(_def[key]);
             }
             else {
                 return null;
@@ -57,7 +57,7 @@ module.exports = function Schema (def) {
         getOptionForKey : function (key, opt) {
             var k = this.defForKey(key);
             if (k) {
-                return (typeof k[opt] !== "undefined") ? k[opt] : null;
+                return (_.isUndefined(k[opt])) ? null : k[opt];
             }
             return null;
         },

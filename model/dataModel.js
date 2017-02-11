@@ -1,7 +1,7 @@
 "use strict";
 
 var _ = require('lodash');
-var schema = require('./schema');
+var Schema = require('./schema');
 var uuid = require('../util/uuid');
 var Constants = require('../config/constants');
 var logger = require('../logging/logger').getLogger();
@@ -9,6 +9,12 @@ var Class = require('../util/Class');
 
 var DataModel = Class.extend({
 
+    /**
+     *
+     * @param inData - object containing data
+     * @param dataSchema - object defining the schema
+     * @param options
+     */
     construct : function (inData, dataSchema, options) {
 
         this._id = uuid(true);
@@ -31,7 +37,7 @@ var DataModel = Class.extend({
 
         var self = this;
         self._options = options || {};
-        self._definition = dataSchema || schema({});
+        self._definition = dataSchema ? (dataSchema instanceof Schema) ? dataSchema : new Schema(dataSchema) : new Schema({});
         self._name = self._definition.metaData().name || uuid();
         self._mutable = true;
         self._model = {};

@@ -46,7 +46,7 @@ var USERS = {
                 return callback(err)
             }
             if (!success) {
-                return callback(new Error("Login call failed"));
+                return callback(new Error(body ? body.message : "Login call failed"));
             }
             else {
                 return callback(null, _.omit(body, ["createdAt", "updatedAt", "ACL"]));
@@ -78,7 +78,7 @@ var USERS = {
                 return callback(err)
             }
             if (!success) {
-                return callback(new Error("Create User call failed"));
+                return callback(new Error(body ? body.message : "Create User call failed"));
             }
             else {
                 //                EmailService.sendNewAccount(username);

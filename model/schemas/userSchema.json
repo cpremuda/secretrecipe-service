@@ -1,0 +1,23 @@
+{
+
+    "_metaData" : {
+        "name" : "Authentication Schema",
+        "mutable" : false
+    },
+
+    "username" : {
+        "type" : "String"
+    },
+    "password" : {
+        "type" : "String"
+    },
+    "email" : {
+        "type" : "String",
+        "validation" : "email"
+    },
+    "phone" : {
+        "type" : "String",
+        "validation" : "phone",
+        "format" : "phone"
+    }
+}
