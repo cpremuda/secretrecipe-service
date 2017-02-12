@@ -335,4 +335,4 @@ function _getPathValue(path, context) {
         }
     }
     return val;
-};
+}

@@ -39,7 +39,7 @@ Class.extend = function extend (prop) {  // LB: name the function so we don't ha
         // Check if we're overwriting an existing function
         prototype[name] = typeof prop[name] == "function" &&
                           typeof _super[name] == "function" && fnTest.test(prop[name]) ?
-            (function (name, fn) {
+            (function (name, fn) { // jshint ignore: line
                 return function () {
                     var tmp = this._super;
 
