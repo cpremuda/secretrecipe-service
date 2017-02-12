@@ -3,6 +3,7 @@ var LoggingRoutes = require("./logging_routes");
 var AuthRoutes = require("./auth_routes");
 var AdminRoutes = require("./admin_routes");
 var ConfigRoutes = require("./config_routes");
+var SchemaRoutes = require("./schema_routes");
 
 var Router = {
     init : function (server) {
@@ -11,6 +12,7 @@ var Router = {
         AuthRoutes.setup(server);
         AdminRoutes.setup(server);
         ConfigRoutes.setup(server);
+        SchemaRoutes.setup(server);
 
         /*
         ... add more routes here
