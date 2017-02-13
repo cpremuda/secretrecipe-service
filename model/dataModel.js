@@ -12,7 +12,7 @@ var DataModel = Class.extend({
     /**
      *
      * @param inData - object containing data
-     * @param dataSchema - object defining the schema
+     * @param dataSchema - object defining the schema or Instance of Schema
      * @param options
      */
     construct : function (inData, dataSchema, options) {

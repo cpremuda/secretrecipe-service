@@ -13,61 +13,60 @@ module.exports = function Schema (def) {
     // set the Def in stone
     deepFreeze(_def);
 
-    return {
 
-        Enum : "Enum",
+    this.Enum = "Enum";
 
-        hasDefinition : function () {
-            return this.keys().length > 0;
-        },
+    this.hasDefinition = function () {
+        return this.keys().length > 0;
+    };
 
-        mutable : function () {
-            return _mutable;
-        },
+    this.mutable = function () {
+        return _mutable;
+    };
 
-        groupId : function () {
-            return _groupId;
-        },
+    this.groupId = function () {
+        return _groupId;
+    };
 
-        hasMetaData : function () {
-            return _metaData !== null;
-        },
+    this.hasMetaData = function () {
+        return _metaData !== null;
+    };
 
-        metaData : function () {
-            return _metaData || {};
-        },
+    this.metaData = function () {
+        return _metaData || {};
+    };
 
-        hasKey : function (key) {
-            return _.has(_def, key);
-        },
+    this.hasKey = function (key) {
+        return _.has(_def, key);
+    };
 
-        defForKey : function (key) {
-            if (this.hasKey(key)) {
-                return _.cloneDeep(_def[key]);
-            }
-            else {
-                return null;
-            }
-        },
-
-        getAll : function () {
-            return _def;
-        },
-
-        getOptionForKey : function (key, opt) {
-            var k = this.defForKey(key);
-            if (k) {
-                return (_.isUndefined(k[opt])) ? null : k[opt];
-            }
-            return null;
-        },
-
-        keys : function () {
-            return _.keys(_def);
-        },
-
-        each : function (func) {
-            _.each(_def, func);
+    this.defForKey = function (key) {
+        if (this.hasKey(key)) {
+            return _.cloneDeep(_def[key]);
         }
+        else {
+            return null;
+        }
+    };
+
+    this.getAll = function () {
+        return _def;
+    };
+
+    this.getOptionForKey = function (key, opt) {
+        var k = this.defForKey(key);
+        if (k) {
+            return (_.isUndefined(k[opt])) ? null : k[opt];
+        }
+        return null;
+    };
+
+    this.keys = function () {
+        return _.keys(_def);
+    };
+
+    this.each = function (func) {
+        _.each(_def, func);
     }
+
 };
