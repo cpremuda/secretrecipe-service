@@ -38,7 +38,7 @@ var AdminRoutes = {
         });
 
         /**
-         * Return the current env specific configuration file
+         * Return the current env specific configuration file - careful, this will include secrets
          */
         server.get('/admin/config', adminCheck, function (req, resp, next) {
             jSend.success(resp, {'env' : process.env.NODE_ENV, 'config' : Settings});
