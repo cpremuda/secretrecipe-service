@@ -20,10 +20,6 @@ var DAO = {
     //=======================================
     //  USER related APIs
     //=======================================
-    getUsers : function (callback) {
-        return USERS.getUsers(callback);
-    },
-
     login : function (authModel, callback) {
         return USERS.login(authModel, callback);
     },

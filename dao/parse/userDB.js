@@ -1,30 +1,12 @@
 var Constants = require('../../config/constants');
 var Logger = require('../../logging/logger').getLogger();
-var kaiseki = require('../../util/kaiseki');
+var parseAPI = require('../../util/parseAPI');
 var Settings = require('../../config/settings');
-var vasync = require('vasync');
 var _ = require('lodash');
 
-var PARSE = new kaiseki(Settings.database.parse.server.appId, Settings.database.parse.server.masterKey);
+var PARSE = new parseAPI(Settings.database.parse.server.appId, Settings.database.parse.server.masterKey);
 
-var USERS = {
-
-    getUsers : function (callback) {
-        Logger.info("Getting users");
-        PARSE.getUsers({limit : 1000}, function (err, res, results, success) {
-            if (err) {
-                Logger.error("Could not get users: " + err.message);
-                return callback(err)
-            }
-            if (!success) {
-                Logger.error("Could not get users: " + JSON.stringify(results));
-                return callback(new Error(JSON.stringify(results)));
-            }
-            //var filteredResults = _.omit(results, ["createdAt", "updatedAt", "objectId", "owner"]);
-            //filteredResults.email = results.owner.email;
-            return callback(null, results);
-        })
-    },
+module.exports = {
 
     /**
      * Log the user in
@@ -46,7 +28,7 @@ var USERS = {
                 return callback(err)
             }
             if (!success) {
-                return callback(new Error(body ? body.message : "Login call failed"));
+                return callback(_createError(body, "Login call failed"));
             }
             else {
                 return callback(null, _.omit(body, ["createdAt", "updatedAt", "ACL"]));
@@ -78,7 +60,7 @@ var USERS = {
                 return callback(err)
             }
             if (!success) {
-                return callback(new Error(body ? body.message : "Create User call failed"));
+                return callback(_createError(body, "Create User call failed"));
             }
             else {
                 //                EmailService.sendNewAccount(username);
@@ -97,7 +79,7 @@ var USERS = {
     //            return callback(err)
     //        }
     //        if (!success) {
-    //            return callback(new Error("Password reset call failed"));
+    //            return callback(_createError(body, "Password reset call failed"));
     //        }
     //        else {
     //            return callback(null, body);
@@ -118,4 +100,34 @@ var USERS = {
         });
     }
 };
-module.exports = USERS;
+
+/**
+ * Utility function for figuring out the error message passed back from Parse/Kaiseki
+ * @param body
+ * @param defaultMsg
+ * @returns {Error}
+ * @private
+ */
+function _createError (results, defaultMsg) {
+
+    // Try and convert to object if we can
+    if (_.isString(results)) {
+        try {
+            results = JSON.parse(results);
+        }
+        catch (ex) {
+        }
+
+    }
+    // Now get the the error message
+    if (_.isObject(results) && results.error) {
+        return new Error(results.error)
+    }
+    else if (results) {
+        return new Error(results);
+    }
+    else {
+        return new Error(defaultMsg);
+    }
+
+}
