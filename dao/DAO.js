@@ -10,11 +10,11 @@ var DAO = {
     },
 
     save : function (dataId, dataModel, callback) {
-        return DB.save(dataId, data, callback);
+        return DB.save(dataId, dataModel, callback);
     },
 
     create : function(dataModel, callback) {
-        return DB.create(data, callback);
+        return DB.create(dataModel, callback);
     },
 
     //=======================================
