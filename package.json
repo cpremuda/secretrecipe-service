@@ -24,7 +24,8 @@
     "restify": "~4.3.0",
     "express" : "~4.14.0",
     "parse-server" : "~2.3.1",
-    "parse-dashboard" : "^1.0.23"
+    "parse-dashboard" : "^1.0.23",
+    "kaiseki" : "~1.0.0"
   },
   "devDependencies": {
     "chai": "~3.5.0",
@@ -51,6 +52,7 @@
     "should": "11.1.x",
     "sinon": "~1.17.6",
     "sinon-chai": "~2.8.0",
-    "superagent": "^3.3.1"
+    "superagent": "^3.3.1",
+    "vasync": "^1.6.0"
   }
 }

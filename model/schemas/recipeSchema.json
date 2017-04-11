@@ -1,0 +1,53 @@
+{
+  "_metaData" : {
+    "name" : "Recipe Schema",
+    "mutable" : false
+  },
+  "recipe" : {
+    "type": "object",
+    "name": {
+      "type" : "String"
+    },
+    "ingredients": {
+      "type": "object",
+      "meats": {
+        "type": "array",
+        "items": {
+          "type": "String"
+        }
+      },
+      "cheeses": {
+        "type": "array",
+        "items": {
+          "type": "String"
+        }
+      },
+      "seasoning": {
+        "type": "array",
+        "items": {
+          "type": "String"
+        }
+      },
+      "fruits": {
+        "type": "array",
+        "items": {
+          "type": "String"
+        }
+      },
+      "vegetables": {
+        "type": "array",
+        "items": {
+          "type": "String"
+        }
+      },
+      "miscItems": {
+        "type": "array",
+        "items": {
+          "type": "String"
+        }
+      }
+    }
+  }
+}
+
+

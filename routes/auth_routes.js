@@ -1,5 +1,6 @@
 var _ = require('lodash');
-var AuthController = require('../dao/DAO');
+var DAO = require('../dao/DAO');
+var AuthController = require('../controllers/auth_controller');
 var Model = require('../model/dataModel.js');
 var userSchema = require('../model/schemas/userSchema');
 var jSend = require('../util/jsend');
@@ -10,7 +11,7 @@ var AuthRoutes = {
 
         server.post('/auth/login', function (req, resp, next) {
             var authModel = new Model(req.body, userSchema);
-            AuthController.login(authModel, function (error, results) {
+            DAO.login(authModel, function (error, results) {
                 if (error) {
                     jSend.error(resp, error);
                 }
@@ -21,9 +22,21 @@ var AuthRoutes = {
             });
         });
 
+        server.get('/auth/logout/:objectId', function (req, resp, next) {
+            var objectId = req.params.objectId;
+            DAO.logout(objectId, function (error, results) {
+                if (error) {
+                    jSend.error(resp, error);
+                }
+                else {
+                    jSend.success(resp, results);
+                }
+            });
+        });
+
         server.post('/auth/register', function (req, resp, next) {
             var authModel = new Model(req.body, userSchema);
-            AuthController.createUser(authModel, function (error, results) {
+            DAO.createUser(authModel, function (error, results) {
                 if (error) {
                     jSend.error(resp, error);
                 }
@@ -36,7 +49,7 @@ var AuthRoutes = {
 
         server.post('/auth/forgotpw', function (req, resp, next) {
             var authModel = new Model(req.body, userSchema);
-            AuthController.requestPasswordReset(authModel, function (error, results) {
+            DAO.requestPasswordReset(authModel, function (error, results) {
                 if (error) {
                     jSend.error(resp, error);
                 }
@@ -47,11 +60,10 @@ var AuthRoutes = {
         });
 
 
-        server.post('/auth/updatepw', function (req, resp, next) {
+        server.post('/auth/updatepw/:objectId', function (req, resp, next) {
+            var objectId = req.params.objectId;
             var authModel = new Model(req.body, userSchema);
-            var sessionToken = req.cookies.sessionToken;
-            var userid = req.cookies.userId;
-            AuthController.updateUser(sessionToken, userid, authModel, function (error, results) {
+            AuthController.updatePassword(objectId, authModel, function (error, results) {
                 if (error) {
                     jSend.error(resp, error);
                 }
@@ -64,7 +76,19 @@ var AuthRoutes = {
 
         server.get('/auth/loggedin', function (req, resp, next) {
             var sessionToken = req.cookies.sessionToken;
-            AuthController.isLoggedIn(sessionToken, function (error, results) {
+            DAO.isLoggedIn(sessionToken, function (error, results) {
+                if (error) {
+                    jSend.error(resp, error);
+                }
+                else {
+                    jSend.success(resp, results);
+                }
+            });
+        });
+
+        server.get('/auth/delete/:objectId', function (req, resp, next) {
+            var objectId = req.params.objectId;
+            DAO.deleteUser(objectId, function (error, results) {
                 if (error) {
                     jSend.error(resp, error);
                 }

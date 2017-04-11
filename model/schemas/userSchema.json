@@ -1,5 +1,4 @@
 {
-
     "_metaData" : {
         "name" : "Authentication Schema",
         "mutable" : false
@@ -15,9 +14,22 @@
         "type" : "String",
         "validation" : "email"
     },
-    "phone" : {
-        "type" : "String",
-        "validation" : "phone",
-        "format" : "phone"
+    "recipeList" : {
+        "type" : "array",
+        "recipe" : {
+          "type" : "object",
+          "Name": {
+            "type" : "String"
+          },
+          "Pointer": {
+            "type": "Pointer",
+            "className": {
+              "type": "String"
+            },
+            "objectId": {
+              "type": "String"
+            }
+          }
+        }
     }
 }

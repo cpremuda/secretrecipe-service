@@ -9,6 +9,12 @@ var Constants = {
     applicationName : "FullStack Server",
     logDir : path.resolve(projectDir, 'logs'),
     resourcesDir : path.resolve(projectDir, 'resources'),
-    appId : "Example"
+    appId : "Example",
+    dataBaseConstants: {
+        recipeClass : "Recipe",
+        sessionClass : "_Session",
+        userClass: "_User"
+    }
 };
+
 module.exports = deepFreeze(Constants);
