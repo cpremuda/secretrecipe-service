@@ -1,0 +1,10 @@
+{
+  "_metaData" : {
+    "name" : "Authentication Schema",
+    "mutable" : false
+  },
+
+  "username" : "recipeUser",
+  "password" : "test123",
+  "email" : "test@test.com"
+}

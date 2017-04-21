@@ -5,16 +5,16 @@ var DAO = {
     //=======================================
     //  DATA related APIs
     //=======================================
-    load : function (dataId, callback) {
-        return DB.load(dataId, callback);
+    loadRecipe : function (dataId, callback) {
+        return DB.loadRecipe(dataId, callback);
     },
 
     save : function (dataId, dataModel, callback) {
         return DB.save(dataId, dataModel, callback);
     },
 
-    create : function(dataModel, callback) {
-        return DB.create(dataModel, callback);
+    createRecipe : function(dataModel, callback) {
+        return DB.createRecipe(dataModel, callback);
     },
 
     //=======================================
@@ -24,8 +24,20 @@ var DAO = {
         return USERS.login(authModel, callback);
     },
 
+    logout : function (ObjectId, callback) {
+        return USERS.logout(ObjectId, callback);
+    },
+
     createUser : function (authModel, callback) {
         return USERS.createUser(authModel, callback);
+    },
+
+    updateUser : function (objectId, data, callback) {
+        return USERS.updateUser(objectId, data, callback);
+    },
+
+    deleteUser : function (objectId, data, callback) {
+        return USERS.deleteUser(objectId, data, callback);
     },
 
     requestPasswordReset : function (authModel, callback) {
@@ -34,8 +46,11 @@ var DAO = {
 
     isLoggedIn : function (sessionId, callback) {
         return USERS.isLoggedIn(sessionId, callback);
-    }
+    },
 
+    getUser : function (sessionId, callback) {
+        return USERS.getUser(sessionId, callback);
+    }
 };
 
 module.exports = DAO;

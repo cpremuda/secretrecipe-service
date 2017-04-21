@@ -2,12 +2,12 @@
     "server": {
         "name": "Example Application",
         "host": "example.yourdomain.com",
-        "port": 3003,
+        "port": 3005,
         "allowOrigin": "*.yourdomain.com",
         "authorizationEnabled": true
     },
 
-    "restartOnUncaughtException": true,
+    "restartOnUncaughtException": false,
     "restartTimeout": 5000,
     "envType": "preproduction",
     "requestTimeout": 15000,
